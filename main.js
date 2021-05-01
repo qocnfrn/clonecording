@@ -29,7 +29,16 @@ homeContactBtn.addEventListener("click", () => {
   scrollIntoView("#contact");
 });
 
+//스크롤할때 점점 투명하게
+const home = document.querySelector(".home__container");
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener("scroll", () => {
+  home.style.opacity = 1 - window.scrollY / homeHeight;
+});
+
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth" });
 }
+
+//
