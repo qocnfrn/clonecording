@@ -19,8 +19,14 @@ navbarMenu.addEventListener("click", (event) => {
   if (link == null) {
     return;
   }
-
+  navbarMenu.classList.remove("open");
   scrollIntoView(link);
+});
+
+// 네비바 토글버튼
+const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
+navbarToggleBtn.addEventListener("click", () => {
+  navbarMenu.classList.toggle("open");
 });
 
 //handle click on contact me button on home
@@ -62,8 +68,14 @@ workBtnContainer.addEventListener("click", (e) => {
     return;
   }
 
-  projectContainer.classList.add("anim-out");
+  // remove selection
+  const active = document.querySelector(".category__Btn.selected");
+  active.classList.remove("selected");
+  const target =
+    e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
+  target.classList.add("selected");
 
+  projectContainer.classList.add("anim-out");
   setTimeout(() => {
     projects.forEach((project) => {
       if (filter === "*" || filter === project.dataset.type) {
