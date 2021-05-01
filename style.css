@@ -98,12 +98,19 @@ button {
 /* navbar*/
 
 #navbar {
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-blue);
+  background-color: transparent;
   align-items: center;
   color: var(--color-white);
   padding: 16px;
+  width: 100%;
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+#navbar.navbar--dark {
+  background-color: var(--color-black);
 }
 
 .navbar__menu {
@@ -144,6 +151,7 @@ button {
   background: url("img/homebackground/background.jpg") center/cover no-repeat;
   padding: 40px;
   text-align: center;
+  padding-top: 120px;
 }
 
 .home__avatar {
