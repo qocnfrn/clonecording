@@ -36,9 +36,22 @@ document.addEventListener("scroll", () => {
   home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
+// 스크롤 내렸을때 arrow-up 버튼 보이게
+const arrowUp = document.querySelector(".arrow__up");
+document.addEventListener("scroll", () => {
+  if (window.scrollY > homeHeight / 2) {
+    arrowUp.classList.add("visible");
+  } else {
+    arrowUp.classList.remove("visible");
+  }
+});
+
+// arrow-up 버튼 클릭했을떄 위로 올라가게
+arrowUp.addEventListener("click", () => {
+  scrollIntoView("#home");
+});
+
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth" });
 }
-
-//
