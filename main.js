@@ -21,6 +21,7 @@ navbarMenu.addEventListener("click", (event) => {
   }
   navbarMenu.classList.remove("open");
   scrollIntoView(link);
+  selectNavItem(target);
 });
 
 // 네비바 토글버튼
@@ -114,7 +115,8 @@ const navItems = sectionIds.map((id) =>
 
 let selectedNavIndex = 0;
 let selectedNavItem = navItems[0];
-function selectedNavItem(selected) {
+
+function selectNavItem(selected) {
   selectedNavItem.classList.remove("active");
   selectedNavItem = selected;
   selectedNavItem.classList.add("active");
@@ -140,5 +142,18 @@ const observerCallback = (entries, observer) => {
     }
   });
 };
+
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach((section) => observer.observe(section));
+
+window.addEventListener("wheel", () => {
+  if (window.scrollY === 0) {
+    selectedNavIndex = 0;
+  } else if (
+    window.scrollY + window.innerHeight ===
+    document.body.clientHeight
+  ) {
+    selectedNavIndex = navItems.length - 1;
+  }
+  selectNavItem(navItems[selectedNavIndex]);
+});
